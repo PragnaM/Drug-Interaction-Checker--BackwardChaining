@@ -1,0 +1,50 @@
+#questions.kqb
+
+any_diseases($ans)
+	Is the patient currently suffering from any of these diseases?
+	---
+	$ans = select_1
+		1: Diabetes
+		2: Hypertension
+
+any_diabetes_medication($drug1)
+	Is the patient currently taking any of these medications to treat Diabetes?
+	---
+	$drug1 = select_1
+		1: Glimepride
+		2: Glyburide
+		3: Glipizide
+		4: Meglinatide
+		5: Metformin
+		
+check_medication_diabetes($drug2)
+	Choose medication to check for possible drug-drug interaction (Diabetes)
+	---
+	$drug2 = select_1
+		1: Amiodarone
+		2: Fluconazole
+		3: Gemfibrozil
+		4: Cimetidine
+		5: Clotrimazole
+		6: Felodipine
+		7: Digoxin
+		8: Warfarin
+		9: Acetaminophen
+
+any_hypertension_medication($drug1)
+	Is the patient currently taking any of these medications to treat Hypertension?
+	---
+	$drug1 = select_1
+		1: Captopril
+		2: Enalapril
+		3: Amlodipine
+		4: Diltiazem
+
+check_medication_hypertension($drug2)
+	Choose medication to check for possible drug-drug interaction (Hypertension)
+	---
+	$drug2 = select_1
+		1: Clomipramine
+		2: Clarithromycin
+		3: Erythromycin
+		4: Itraconazole

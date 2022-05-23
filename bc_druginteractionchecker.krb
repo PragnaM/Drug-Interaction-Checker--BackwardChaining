@@ -1,0 +1,198 @@
+#bc_druginteractionchecker
+diabetes_check
+	use disease(Diabetes)
+	when
+		questions.any_diseases($ans)
+		check $ans in (1,)
+
+Sulphonylureas
+	use disease_medication(Sulphonylureas)
+	when
+		disease(Diabetes)
+		questions.any_diabetes_medication($drug1)
+		check $drug1 in (1, 2, 3)
+
+CYP2C9inhibitors
+	use disease_newmedication(CYP2C9inhibitors)
+	when
+		disease_medication(Sulphonylureas)
+		questions.check_medication_diabetes($drug2)
+		check $drug2 in (1, 2)	
+
+drug_interaction1
+	use drug_interaction(Sulphonylureas, CYP2C9inhibitors)	
+	when
+		disease_newmedication(CYP2C9inhibitors)
+
+no_interaction_sulphonylureas
+	use disease_newmedication_nointeraction_sulphonylureas(Others)
+	when
+		disease_medication(Sulphonylureas)
+		questions.check_medication_diabetes($drug2)
+		check $drug2 in (3, 4, 5, 6, 7, 8, 9)
+
+no_interaction_sulphonylureas_others
+	use drug_interaction(NoInteraction, Safe)
+	when 
+		disease_newmedication_nointeraction_sulphonylureas(Others)
+		
+Meglitanides
+	use disease_medication(Meglitanides)
+	when
+		disease(Diabetes)
+		questions.any_diabetes_medication($drug1)
+		check $drug1 in (4, )
+
+Gemfibrozil
+	use disease_newmedication(Gemfibrozil)
+	when
+		disease_medication(Meglitanides)
+		questions.check_medication_diabetes($drug2)
+		check $drug2 in (3, )
+
+drug_interaction2
+	use drug_interaction(Meglitanides, Gemfibrozil)	
+	when
+		disease_newmedication(Gemfibrozil)
+
+no_interaction_Meglitanides
+	use disease_newmedication_nointeraction_Meglitanides(Others)
+	when
+		disease_medication(Meglitanides)
+		questions.check_medication_diabetes($drug2)
+		check $drug2 in (1, 2, 4, 5, 6, 7, 8, 9)
+
+no_interaction_Meglitanides_others
+	use drug_interaction(NoInteraction, Safe)
+	when 
+		disease_newmedication_nointeraction_Meglitanides(Others)
+
+Metformin
+	use disease_medication(Metformin)
+	when
+		disease(Diabetes)
+		questions.any_diabetes_medication($drug1)
+		check $drug1 in (5, )
+
+Cimetidine
+	use disease_newmedication(Cimetidine)
+	when
+		disease_medication(Metformin)
+		questions.check_medication_diabetes($drug2)
+		check $drug2 in (4, )
+
+drug_interaction3
+	use drug_interaction(Metformin, Cimetidine)	
+	when
+		disease_newmedication(Cimetidine)
+
+no_interaction_Metformin
+	use disease_newmedication_nointeraction_Metformin(Others)
+	when
+		disease_medication(Metformin)
+		questions.check_medication_diabetes($drug2)
+		check $drug2 in (1, 2, 3, 5, 6, 7, 8, 9)
+
+no_interaction_Metformin_others
+	use drug_interaction(NoInteraction, Safe)
+	when 
+		disease_newmedication_nointeraction_Metformin(Others)
+
+hypertension_check
+	use disease(Hypertension)
+	when
+		questions.any_diseases($ans)
+		check $ans in (2,)
+
+Captopril
+	use disease_medication(Captopril)
+	when
+		disease(Hypertension)
+		questions.any_hypertension_medication($drug1)
+		check $drug1 in (1, )
+
+Clomipramine
+	use disease_newmedication(Clomipramine)
+	when
+		disease_medication(Captopril)
+		questions.check_medication_hypertension($drug2)
+		check $drug2 in (1, )	
+
+drug_interaction4
+	use drug_interaction(Captopril, Clomipramine)	
+	when
+		disease_newmedication(Clomipramine)
+
+no_interaction_captopril
+	use disease_newmedication_nointeraction_captopril(Others)
+	when
+		disease_medication(Captopril)
+		questions.check_medication_hypertension($drug2)
+		check $drug2 in (2, 3, 4)
+
+no_interaction_captopril_others
+	use drug_interaction(NoInteraction, Safe)
+	when 
+		disease_newmedication_nointeraction_captopril(Others)
+
+Enalapril
+	use disease_medication(Enalapril)
+	when
+		disease(Hypertension)
+		questions.any_hypertension_medication($drug1)
+		check $drug1 in (2, )
+
+CYP3A4inhibitors
+	use disease_newmedication(CYP3A4inhibitors)
+	when
+		disease_medication(Enalapril)
+		questions.check_medication_hypertension($drug2)
+		check $drug2 in (2, 3, 4)	
+
+drug_interaction5
+	use drug_interaction(Enalapril, CYP3A4inhibitors)	
+	when
+		disease_newmedication(CYP3A4inhibitors)
+
+no_interaction_enalapril
+	use disease_newmedication_nointeraction_enalapril(Others)
+	when
+		disease_medication(Enalapril)
+		questions.check_medication_hypertension($drug2)
+		check $drug2 in (1, )
+
+no_interaction_enalapril_others
+	use drug_interaction(NoInteraction, Safe)
+	when 
+		disease_newmedication_nointeraction_enalapril(Others)
+
+CCBs
+	use disease_medication(CCBs)
+	when
+		disease(Hypertension)
+		questions.any_hypertension_medication($drug1)
+		check $drug1 in (3, 4)	
+
+CYP3A4inhibitors1
+	use disease_newmedication(CYP3A4inhibitors1)
+	when
+		disease_medication(CCBs)
+		questions.check_medication_hypertension($drug2)
+		check $drug2 in (2, 3, 4)
+
+drug_interaction6
+	use drug_interaction(CCBs, CYP3A4inhibitors)	
+	when
+		disease_newmedication(CYP3A4inhibitors1)
+
+no_interaction_CCBs
+	use disease_newmedication_nointeraction_CCBs(Others)
+	when
+		disease_medication(CCBs)
+		questions.check_medication_hypertension($drug2)
+		check $drug2 in (1, )
+
+no_interaction_CCBs_others
+	use drug_interaction(NoInteraction, Safe)
+	when 
+		disease_newmedication_nointeraction_CCBs(Others)
